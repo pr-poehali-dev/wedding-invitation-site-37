@@ -36,9 +36,8 @@ const Index = () => {
           <div className="flex justify-center space-x-8">
             {[
               { label: 'Главная', id: 'hero' },
-              { label: 'Место', id: 'venue' },
-              { label: 'Программа', id: 'program' },
               { label: 'Фото', id: 'gallery' },
+              { label: 'Программа', id: 'program' },
               { label: 'RSVP', id: 'rsvp' }
             ].map((item) => (
               <button
@@ -66,7 +65,7 @@ const Index = () => {
               />
             </div>
             <h1 className="font-heading text-6xl md:text-8xl font-bold text-primary mb-6">
-              Анна & Михаил
+              Денис & Елизавета
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 mb-8">
               Приглашаем вас разделить с нами самый счастливый день
@@ -74,59 +73,47 @@ const Index = () => {
             <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-lg inline-block">
               <div className="flex items-center justify-center space-x-6 text-primary">
                 <Icon name="Calendar" size={24} />
-                <span className="text-2xl font-heading font-semibold">15 сентября 2024</span>
+                <span className="text-2xl font-heading font-semibold">13 февраля 2026</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Venue Section */}
-      <section id="venue" className="py-20 bg-white">
+      {/* Gallery Section */}
+      <section id="gallery" className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-5xl font-bold text-primary text-center mb-16">
-              Место проведения
-            </h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <Icon name="MapPin" size={24} className="text-primary mt-1" />
-                  <div>
-                    <h3 className="font-heading text-2xl font-semibold mb-2">Загородный комплекс "Усадьба"</h3>
-                    <p className="text-foreground/80">
-                      Московская область, Красногорский район, 
-                      деревня Ангелово, ул. Центральная, 15
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Icon name="Clock" size={24} className="text-primary mt-1" />
-                  <div>
-                    <h3 className="font-heading text-xl font-semibold mb-2">Время</h3>
-                    <p className="text-foreground/80">
-                      Церемония начинается в 16:00<br />
-                      Банкет в 18:00
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Icon name="Car" size={24} className="text-primary mt-1" />
-                  <div>
-                    <h3 className="font-heading text-xl font-semibold mb-2">Как добраться</h3>
-                    <p className="text-foreground/80">
-                      От метро Мякинино на автобусе 824 до остановки "Ангелово"<br />
-                      Парковка на территории комплекса
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg">
+          <h2 className="font-heading text-5xl font-bold text-primary text-center mb-16">
+            Наша история
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="md:col-span-2">
                 <img 
-                  src="/img/5f4f6277-3bdb-4689-aa37-4101cc4ad84b.jpg"
-                  alt="Wedding venue"
-                  className="w-full h-80 object-cover"
+                  src="/img/4a180b2a-3c9c-48c9-9911-6b4666a84430.jpg"
+                  alt="Wedding photos collage"
+                  className="w-full h-80 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
                 />
+              </div>
+              <div className="space-y-6">
+                <Card className="bg-secondary/20 border-none">
+                  <CardContent className="p-6 text-center">
+                    <Icon name="Heart" size={32} className="text-primary mx-auto mb-3" />
+                    <h3 className="font-heading text-xl font-semibold text-primary mb-2">5 лет вместе</h3>
+                    <p className="text-sm text-foreground/70">
+                      С момента нашей первой встречи в университете
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="bg-secondary/20 border-none">
+                  <CardContent className="p-6 text-center">
+                    <Icon name="Home" size={32} className="text-primary mx-auto mb-3" />
+                    <h3 className="font-heading text-xl font-semibold text-primary mb-2">Наш дом</h3>
+                    <p className="text-sm text-foreground/70">
+                      Построили вместе уютное семейное гнездышко
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
@@ -142,12 +129,8 @@ const Index = () => {
             </h2>
             <div className="space-y-8">
               {[
-                { time: '15:30', title: 'Сбор гостей', description: 'Welcome-зона с легкими закусками и напитками' },
-                { time: '16:00', title: 'Церемония бракосочетания', description: 'Выездная регистрация в саду усадьбы' },
-                { time: '17:00', title: 'Фотосессия и поздравления', description: 'Фотографирование с молодоженами и гостями' },
-                { time: '18:00', title: 'Банкет', description: 'Праздничный ужин в главном зале' },
-                { time: '20:00', title: 'Первый танец', description: 'Открытие танцевального вечера' },
-                { time: '22:00', title: 'Развлекательная программа', description: 'Живая музыка и танцы до утра' }
+                { time: '14:40', title: 'Церемония бракосочетания', description: 'ЗАГС "Теремок", ул. Молодогвардейская' },
+                { time: '15:30', title: 'Ресторан Дубки', description: 'Праздничный банкет с друзьями и семьей' }
               ].map((event, index) => (
                 <Card key={index} className="border-l-4 border-l-primary bg-white shadow-sm hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
@@ -237,7 +220,7 @@ const Index = () => {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="font-heading text-2xl text-center text-primary">
-                  Пожалуйста, подтвердите ваше участие до 1 сентября
+                  Пожалуйста, подтвердите ваше участие до 1 февраля
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -330,7 +313,7 @@ const Index = () => {
       <footer className="bg-primary text-white py-12">
         <div className="container mx-auto px-6 text-center">
           <div className="mb-6">
-            <h3 className="font-heading text-3xl font-bold mb-2">Анна & Михаил</h3>
+            <h3 className="font-heading text-3xl font-bold mb-2">Денис & Елизавета</h3>
             <p className="text-white/80">С любовью ждем вас на нашем празднике</p>
           </div>
           <div className="flex justify-center space-x-8 text-sm">

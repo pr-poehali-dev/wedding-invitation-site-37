@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -17,6 +17,33 @@ const Index = () => {
     comments: ''
   });
 
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const weddingDate = new Date('2026-02-13T14:40:00');
+    
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = weddingDate.getTime() - now;
+      
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -29,9 +56,24 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-secondary/5 to-background relative overflow-hidden">
+      {/* Floating hearts animation */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-10 text-primary/20 animate-bounce" style={{animationDelay: '0s'}}>
+          💕
+        </div>
+        <div className="absolute top-32 right-20 text-primary/30 animate-bounce" style={{animationDelay: '1s'}}>
+          💖
+        </div>
+        <div className="absolute bottom-40 left-1/4 text-primary/20 animate-bounce" style={{animationDelay: '2s'}}>
+          💝
+        </div>
+        <div className="absolute top-1/3 right-1/3 text-primary/25 animate-bounce" style={{animationDelay: '3s'}}>
+          💗
+        </div>
+      </div>
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-primary/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary/80 to-secondary/80 backdrop-blur-sm shadow-lg">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-center space-x-8">
             {[
@@ -43,7 +85,7 @@ const Index = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-foreground/70 hover:text-primary transition-colors text-sm font-medium"
+                className="text-white/90 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-110 transform"
               >
                 {item.label}
               </button>
@@ -54,7 +96,14 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent"></div>
+        
+        {/* Moving text elements */}
+        <div className="absolute top-1/4 left-0 right-0 opacity-10 pointer-events-none">
+          <div className="animate-pulse text-6xl font-heading text-primary whitespace-nowrap">
+            💕 Love • Forever • Together • Happiness • Joy • Love • Forever • Together • Happiness • Joy • 💕
+          </div>
+        </div>
         <div className="container mx-auto px-6 text-center z-10">
           <div className="max-w-4xl mx-auto animate-fade-in">
             <div className="mb-8">
@@ -64,16 +113,69 @@ const Index = () => {
                 className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-primary/20 shadow-lg"
               />
             </div>
-            <h1 className="font-heading text-6xl md:text-8xl font-bold text-primary mb-6">
-              Денис & Елизавета
+            <h1 className="font-heading text-6xl md:text-8xl font-bold text-primary mb-6 animate-pulse">
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.1s'}}>Д</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.2s'}}>е</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.3s'}}>н</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.4s'}}>и</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.5s'}}>с</span>
+              <span className="mx-4 text-secondary animate-pulse">💖</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.6s'}}>Е</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.7s'}}>л</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.8s'}}>и</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '0.9s'}}>з</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '1.0s'}}>а</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '1.1s'}}>в</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '1.2s'}}>е</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '1.3s'}}>т</span>
+              <span className="inline-block animate-bounce" style={{animationDelay: '1.4s'}}>а</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 mb-8">
               Приглашаем вас разделить с нами самый счастливый день
             </p>
-            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-lg inline-block">
+            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-lg inline-block mb-8">
               <div className="flex items-center justify-center space-x-6 text-primary">
-                <Icon name="Calendar" size={24} />
-                <span className="text-2xl font-heading font-semibold">13 февраля 2026</span>
+                <Icon name="Calendar" size={24} className="animate-spin" />
+                <span className="text-2xl font-heading font-semibold animate-pulse">13 февраля 2026</span>
+              </div>
+            </div>
+            
+            {/* Animated Countdown Timer */}
+            <div className="bg-gradient-to-r from-primary/80 to-secondary/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl animate-pulse">
+              <h3 className="text-white text-2xl font-heading mb-6 animate-bounce">До нашего счастливого дня:</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-2xl p-4 mb-2 transform hover:scale-110 transition-transform">
+                    <span className="text-4xl md:text-5xl font-bold text-white animate-bounce">
+                      {timeLeft.days}
+                    </span>
+                  </div>
+                  <span className="text-white/90 text-sm font-medium">дней</span>
+                </div>
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-2xl p-4 mb-2 transform hover:scale-110 transition-transform">
+                    <span className="text-4xl md:text-5xl font-bold text-white animate-bounce" style={{animationDelay: '0.2s'}}>
+                      {timeLeft.hours}
+                    </span>
+                  </div>
+                  <span className="text-white/90 text-sm font-medium">часов</span>
+                </div>
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-2xl p-4 mb-2 transform hover:scale-110 transition-transform">
+                    <span className="text-4xl md:text-5xl font-bold text-white animate-bounce" style={{animationDelay: '0.4s'}}>
+                      {timeLeft.minutes}
+                    </span>
+                  </div>
+                  <span className="text-white/90 text-sm font-medium">минут</span>
+                </div>
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-2xl p-4 mb-2 transform hover:scale-110 transition-transform">
+                    <span className="text-4xl md:text-5xl font-bold text-white animate-bounce" style={{animationDelay: '0.6s'}}>
+                      {timeLeft.seconds}
+                    </span>
+                  </div>
+                  <span className="text-white/90 text-sm font-medium">секунд</span>
+                </div>
               </div>
             </div>
           </div>
